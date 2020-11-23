@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
-  before_action :find_product, only %i[edit update show destroy]
+  before_action :find_product, only: %i[edit update show destroy]
   def index
-    @products = Product.all
+    @products = policy_scope(Product)
   end
 
   def show;end
