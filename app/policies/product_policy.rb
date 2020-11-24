@@ -4,4 +4,24 @@ class ProductPolicy < ApplicationPolicy
       scope.all
     end
   end
+
+  def index
+    show
+  end
+
+  def show?
+    true
+  end
+
+  def create?
+    true
+  end
+
+  def update?
+    record.user == user
+  end
+
+  def destroy?
+    true if user.admin
+  end
 end
