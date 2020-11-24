@@ -1,0 +1,2 @@
+class WhishListsController < ApplicationController
+end

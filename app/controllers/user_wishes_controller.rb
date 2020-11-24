@@ -1,0 +1,2 @@
+class UserWishesController < ApplicationController
+end
