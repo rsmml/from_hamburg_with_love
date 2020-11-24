@@ -42,7 +42,7 @@ class ProductCategoriesController < ApplicationController
   def destroy
     @product_category.destroy
     authorize @product_category
-    redirect_to products_path
+    redirect_to root_path
   end
 
   private
@@ -60,6 +60,6 @@ class ProductCategoriesController < ApplicationController
   end
 
   def product_category_params
-    params.require(:product_category).permit(:product_id, :category_id)
+    params.require(:product_categories).permit(:product_id, :category_id)
   end
 end

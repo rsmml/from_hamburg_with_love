@@ -4,7 +4,11 @@
 <p>This products belongs to the categories:</p>
 <ul>
   <% @product_categories.each do |pc| %>
-    <li> <%= pc.category.title %></li>
+    <li>
+      <%= pc.category.title %>
+      <%# raise %>
+      <%= link_to "delete category", product_categories_path(@product_categor), method: :destroy %>
+    </li>
   <% end %>
 </ul>
 
