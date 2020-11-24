@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_24_131511) do
+ActiveRecord::Schema.define(version: 2020_11_24_132211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,28 @@ ActiveRecord::Schema.define(version: 2020_11_24_131511) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "order_details", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.bigint "order_id", null: false
+    t.integer "ammount"
+    t.decimal "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_order_details_on_order_id"
+    t.index ["product_id"], name: "index_order_details_on_product_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.date "date"
+    t.decimal "total_ammount"
+    t.string "shipping_address"
+    t.boolean "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "product_categories", force: :cascade do |t|
@@ -74,6 +96,18 @@ ActiveRecord::Schema.define(version: 2020_11_24_131511) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
+  create_table "user_wishes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "wish_list_id", null: false
+    t.bigint "product_id", null: false
+    t.integer "amount"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_user_wishes_on_product_id"
+    t.index ["user_id"], name: "index_user_wishes_on_user_id"
+    t.index ["wish_list_id"], name: "index_user_wishes_on_wish_list_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -90,10 +124,24 @@ ActiveRecord::Schema.define(version: 2020_11_24_131511) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "wish_lists", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_wish_lists_on_user_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "order_details", "orders"
+  add_foreign_key "order_details", "products"
+  add_foreign_key "orders", "users"
   add_foreign_key "product_categories", "categories"
   add_foreign_key "product_categories", "products"
   add_foreign_key "products", "categories"
   add_foreign_key "reviews", "products"
   add_foreign_key "reviews", "users"
+  add_foreign_key "user_wishes", "products"
+  add_foreign_key "user_wishes", "users"
+  add_foreign_key "user_wishes", "wish_lists"
+  add_foreign_key "wish_lists", "users"
 end
