@@ -1,0 +1,8 @@
+<h1>Add a new product category</h1>
+
+<%= simple_form_for [@product_category] do |f| %>
+  <%= f.association :product %>
+  <%= f.association :category %>
+
+  <%= f.submit class: 'btn btn-primary' %>
+<% end %>

@@ -1,4 +1,4 @@
-class CategoryController < ApplicationController
+class CategoriesController < ApplicationController
   before_action :find_product, only: %i[edit update show destroy]
   skip_before_action :authenticate_user!, only: [:index, :show]
   # skip_after_action :verify_authorized, only: [:show]
@@ -40,7 +40,7 @@ class CategoryController < ApplicationController
   def destroy
     @category.destroy
     authorize @category
-    redirect_to rooth_path
+    redirect_to root_path
   end
 
   private

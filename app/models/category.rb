@@ -1,4 +1,13 @@
 class Category < ApplicationRecord
-  has_many :product_categorys
-  has_many :products, through: :product_categorys
+  categories = Category.all
+  list = []
+  categories.each do |p|
+    list << p.id
+  end
+  CATEGORIES = list
+
+  has_many :product_categories
+  has_many :products, through: :product_categories
+
+  validates :categories, inclusion: { in: CATEGORIES }
 end

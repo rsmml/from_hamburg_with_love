@@ -8,6 +8,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    product_category
     authorize @product
   end
 
@@ -21,7 +22,7 @@ class ProductsController < ApplicationController
 
     authorize @product
     if @product.save
-      redirect_to new_product_category_path
+      redirect_to product_path(@product)
     else
       render :new
     end
@@ -40,10 +41,14 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
     authorize @product
-    redirect_to rooth_path
+    redirect_to products_path
   end
 
   private
+
+  def product_category
+    @product_categories = ProductCategory.where(product_id: @product.id)
+  end
 
   def find_product
     @product = Product.find(params[:id])
