@@ -18,10 +18,10 @@ class ProductPolicy < ApplicationPolicy
   end
 
   def update?
-    record.user == user
+    user.admin?
   end
 
   def destroy?
-    true if user.admin
+    user.admin?
   end
 end

@@ -3,6 +3,11 @@
 
 <% if user_signed_in? %>
   <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+  <p>Hello <%= @user.email %> </p>
+  <p>You are <%= @user.admin ? '' : 'not' %> an admin </p>
+  <% if @user.admin %>
+    <%= link_to "Add Product", new_product_path %>
+  <% end %>
 <% else %>
     <%= link_to "Login", new_user_session_path %>
 <% end %>
