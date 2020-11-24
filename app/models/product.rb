@@ -10,5 +10,5 @@ class Product < ApplicationRecord
   has_many :product_categories
   has_many :categories, through: :product_categories
 
-  validates :products, inclusion: { in: PRODUCTS }
+  # validates :product, inclusion: { in: PRODUCTS }
 end
