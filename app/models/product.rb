@@ -7,7 +7,7 @@ class Product < ApplicationRecord
   PRODUCTS = list
 
   has_many :reviews, dependent: :destroy
-  has_many :product_categories
+  has_many :product_categories, dependent: :destroy
   has_many :categories, through: :product_categories
 
   # validates :product, inclusion: { in: PRODUCTS }
