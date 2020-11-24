@@ -1,12 +1,19 @@
 <h1>Add a new product here</h1>
 
-<% categories = Category.all.map { |c| c.title } %>
+<% categories = Category.all %>
+<% list = [] %>
+<% categories.each do |c| %>
+  <% list << c.title %>
+<% end %>
 
 <%= simple_form_for [@product] do |f| %>
   <%= f.input :title %>
   <%= f.input :description %>
   <%= f.input :price %>
-  <%= f.input :category, collection: [categories]%>
+  <%= f.input :category, collection: [list]%>
   <%= f.input :amount %>
   <%= f.submit class: 'btn btn-primary' %>
 <% end %>
+
+
+

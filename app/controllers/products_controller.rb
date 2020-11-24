@@ -18,7 +18,6 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    # @product.category = Category.find(product_params[category])
 
     authorize @product
     if @product.save
