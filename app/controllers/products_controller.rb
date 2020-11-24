@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
 
     authorize @product
     if @product.save
-      redirect_to product_path(@product)
+      redirect_to new_product_category_path
     else
       render :new
     end
