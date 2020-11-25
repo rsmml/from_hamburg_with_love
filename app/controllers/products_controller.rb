@@ -5,6 +5,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = policy_scope(Product)
+    @order_detail = current_order.order_details.new
   end
 
   def show

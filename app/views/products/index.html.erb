@@ -1,9 +1,20 @@
 <h1>Here are all products</h1>
+
 <%= link_to 'Home', root_path  %>
+<%= link_to "#{current_order.order_details.size} items with a value of EUR ...", orders_path  %>
+
+
 <ul>
   <% @products.each do |p| %>
     <li>
-      <%= link_to p.title, product_path(p)%>
+      <%= p.title %>
+      <p>Eur <%= p.price %></p>
+      <%= link_to 'Show', product_path(p)  %>
+      <%= form_for @order_detail do |f| %>
+        <%= f.hidden_field :product_id, :value => p.id %>
+        <%= f.number_field :ammount, :value => 1, :min => 1 %>
+        <%= f.submit "Add to cart" %>
+      <% end %>
     </li>
   <% end %>
 </ul>

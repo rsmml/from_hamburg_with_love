@@ -1,0 +1,6 @@
+<h1>This is your Order!</h1>
+<p>You have <%= @order_details.count %> items </p>
+<% @order_details.each do |item| %>
+  <%= item.product.title %>
+  <%= item.product.price %>
+<% end %>
