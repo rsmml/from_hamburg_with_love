@@ -1,1 +1,9 @@
 <h1>Edit Product</h1>
+
+<%= simple_form_for @product do |f| %>
+  <%= f.input :title %>
+  <%= f.input :description %>
+  <%= f.input :price %>
+  <%= f.input :amount %>
+  <%= f.submit class: 'btn btn-primary' %>
+<% end %>
