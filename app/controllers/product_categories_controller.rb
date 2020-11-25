@@ -42,7 +42,7 @@ class ProductCategoriesController < ApplicationController
   def destroy
     @product_category.destroy
     authorize @product_category
-    redirect_to root_path
+    redirect_to products_path
   end
 
   private
