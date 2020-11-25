@@ -5,10 +5,6 @@ class ProductCategoryPolicy < ApplicationPolicy
     end
   end
 
-  def index
-    show
-  end
-
   def show?
     true
   end

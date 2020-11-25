@@ -6,8 +6,7 @@
   <% @product_categories.each do |pc| %>
     <li>
       <%= pc.category.title %>
-      <%# raise %>
-      <%= link_to "delete category", product_categories_path(@product_categor), method: :destroy %>
+      <%= link_to "delete category", product_category_path(pc), method: :delete %>
     </li>
   <% end %>
 </ul>
